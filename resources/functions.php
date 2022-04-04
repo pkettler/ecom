@@ -2,6 +2,16 @@
 
 // helper functions
 
+
+//Gives us last inserted id
+function last_id()
+{
+
+    global $connection;
+
+    return mysqli_insert_id($connection);
+}
+
 function set_message($msg)
 {
     if (!empty($msg)) {
@@ -80,7 +90,7 @@ function get_products()
                         <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
                         </h4>
                         <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                    <a class="btn btn-primary" href="cart.php?add={$row['product_id']}">Add To Cart</a>
+                    <a class="btn btn-primary" href="../resources/cart.php?add={$row['product_id']}">Add To Cart</a>
                     </div>
                 </div>
             </div>
@@ -174,6 +184,7 @@ function login_user()
     if (isset($_POST['submit'])) {
         $username = escape_string($_POST['username']);
         $password = escape_string($_POST['password']);
+        // $email = escape_string($_POST['email']);
 
         $query = query("SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}'");
         confirm($query);
@@ -182,8 +193,14 @@ function login_user()
             set_message("Incorrect username or password");
             redirect("login.php");
         } else {
-            set_message("Hello {$username}!");
+            $_SESSION['username'] = $username;
+            // set_message("Hello {$username}!");
             redirect("admin/index.php");
+        }
+
+        //Use this to show user's first name in the top admin nav by creating a first name column in database. change session to 'first_name' instead of 'email'
+        while ($row = fetch_array($query)) {
+            $_SESSION['email'] = $row['email'];
         }
     }
 }

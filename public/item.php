@@ -52,7 +52,7 @@
 
                             <form action="">
                                 <div class="form-group">
-                                    <a href="cart.php?add=<?php echo $row['product_id']; ?>" type="submit" class="btn btn-primary">Buy Now</a>
+                                    <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" type="submit" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </form>
 
