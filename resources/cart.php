@@ -127,7 +127,7 @@ function show_paypal()
     }
 }
 
-function report()
+function process_transaction()
 {
 
 
@@ -154,7 +154,7 @@ function report()
                     $id = substr($name, 8, $length);
 
                     //inserts confirmation info from Paypal into orders table
-                    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status, order_currency) VALUES('{$amount}', '{$currency}', '{$transaction}', '{$status}')");
+                    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_currency, order_status ) VALUES('{$amount}', '{$transaction}', '{$currency}', '{$status}')");
 
                     //Gives us last inserted id
                     $last_id = last_id();
