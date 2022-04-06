@@ -1,5 +1,8 @@
 <?php
 
+//Global variable. Change this variable in display_image() if you change location of images directory. Will adjust path for all products across site.
+$upload_directory = "uploads";
+
 // helper functions
 
 
@@ -80,11 +83,13 @@ function get_products()
 
     while ($row = fetch_array($query)) {
 
+        $product_image = display_image($row['product_image']);
+
         $product = <<<DELIMETER
 
         <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
-                   <a href="item.php?id={$row['product_id']}"> <img src="{$row['product_image']}" alt=""> </a>
+                   <a href="item.php?id={$row['product_id']}"> <img src="../resources/{$product_image}" alt=""> </a>
                     <div class="caption">
                     <h4 class="pull-right">&#36;{$row['product_price']}</h4>
                         <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
@@ -127,16 +132,19 @@ function get_products_in_cat_page()
 
     while ($row = fetch_array($query)) {
 
+        $product_image = display_image($row['product_image']);
+
+
         $product = <<<DELIMETER
 
             <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-            <a href="item.php?id={$row['product_id']}"> <img src="{$row['product_image']}" alt=""> </a>
+            <a href="item.php?id={$row['product_id']}"> <img src="../resources/{$product_image}" alt=""> </a>
                 
                     <h3>{$row['product_title']}</h3>
                     <p>{$row['product_short_desc']}</p>
                     <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+                        <a href="../resources/cart.php?add={$row['product_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
                     </p>
                
             </div>
@@ -157,16 +165,18 @@ function get_products_in_shop_page()
 
     while ($row = fetch_array($query)) {
 
+        $product_image = display_image($row['product_image']);
+
         $product = <<<DELIMETER
 
             <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-            <a href="item.php?id={$row['product_id']}"> <img src="{$row['product_image']}" alt=""> </a>
+            <a href="item.php?id={$row['product_id']}"> <img src="../resources/{$product_image}" alt=""> </a>
                 
                     <h3>{$row['product_title']}</h3>
                     <p>{$row['product_short_desc']}</p>
                     <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+                        <a href="../resources/cart.php?add={$row['product_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
                     </p>
                
             </div>
@@ -261,7 +271,16 @@ function display_orders()
 }
 
 
-/***********************************Admin Products ***************************************** */
+/***********************************Admin Products Page ***************************************** */
+
+
+function display_image($picture)
+{
+
+    global $upload_directory;
+
+    return $upload_directory . DS . $picture;
+}
 
 function get_products_in_admin()
 {
@@ -271,14 +290,18 @@ function get_products_in_admin()
 
     while ($row = fetch_array($query)) {
 
+        $category = show_product_category_title($row['product_category_id']);
+
+        $product_image = display_image($row['product_image']);
+
         $product = <<<DELIMETER
 
             <tr>
                 <td>{$row['product_id']}</td>
                 <td>{$row['product_title']}<br>
-                <a href="index.php?edit_product&id={$row['product_id']}"><img src="{$row['product_image']}" alt=""></a>
+                <a href="index.php?edit_product&id={$row['product_id']}"><img width="100" src="../../resources/{$product_image}" alt=""></a>
                 </td>
-                <td>Category</td>
+                <td>{$category}</td>
                 <td>{$row['product_price']}</td>
                 <td>{$row['product_quantity']}</td>
                 <td><a class="btn btn-danger" href="../../resources/templates/back/delete_product.php?id={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -290,6 +313,15 @@ function get_products_in_admin()
     }
 }
 
+function show_product_category_title($product_category_id)
+{
+    $category_query = query("SELECT * FROM categories WHERE cat_id = '{$product_category_id}'");
+    confirm($category_query);
+
+    while ($category_row = fetch_array($category_query)) {
+        return $category_row['cat_title'];
+    }
+}
 
 
 /************************************Add Products in Admin ***********************************/

@@ -23,7 +23,7 @@
             <div class="row">
 
                 <div class="col-md-7">
-                    <img class="img-responsive" src="<?php echo $row['product_image']; ?>" alt="">
+                    <img class="img-responsive" src="../resources/<?php echo display_image($row['product_image']); ?>" alt="<?php echo $row['product_short_desc']; ?>">
 
                 </div>
 
@@ -50,6 +50,7 @@
                             </div>
                             <p><?php echo $row['product_short_desc']; ?></p>
 
+                            <!-- Buy Now Button  -->
                             <form action="">
                                 <div class="form-group">
                                     <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" type="submit" class="btn btn-primary">Buy Now</a>
