@@ -462,3 +462,89 @@ function add_category()
         }
     }
 }
+
+
+/********************************admin users*******************************/
+
+function display_users()
+{
+
+    $category_query = query("SELECT * FROM users");
+    confirm($category_query);
+
+    while ($row = fetch_array($category_query)) {
+        $user_id = $row['user_id'];
+        $username = $row['username'];
+        $email = $row['email'];
+        $password = $row['password'];
+
+        $user = <<<DELIMETER
+
+            <tr>
+                <td>{$user_id}</td>
+                <td>{$username}</td>
+                <td>{$email}</td>
+                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['user_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+
+        DELIMETER;
+
+        echo $user;
+    }
+}
+
+
+function add_user()
+{
+    if (isset($_POST['add_user'])) {
+        $username = escape_string($_POST['username']);
+        $email    = escape_string($_POST['email']);
+        $password = escape_string($_POST['password']);
+        $user_photo = $_FILES['file']['name'];
+        $photo_tmp = $_FILES['file']['tmp_name'];
+
+        move_uploaded_file($photo_tmp, UPLOAD_DIRECTORY . DS . $user_photo);
+
+        $query = query("INSERT INTO users(username, email,password, user_photo ) VALUES('{$username}', '{$email}', '{$password}', '{$user_photo}')");
+        // $last_id = last_id();
+        confirm($query);
+        set_message("User added");
+        redirect("index.php?users");
+    }
+}
+
+
+function get_reports()
+{
+
+    $query = query(" SELECT * FROM reports");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+
+        //Variables to display category and image in reports. add category and image column to db
+        // $category = show_product_category_title($row['product_category_id']);
+        // $product_image = display_image($row['product_image']);
+
+        //Put this inside delimiter
+        // <a href="index.php?edit_product&id={$row['product_id']}"><img width="100" src="../../resources/{$product_image}" alt=""></a>
+
+        $reports = <<<DELIMETER
+
+            <tr>
+                <td>{$row['report_id']}</td>
+                <td>{$row['product_id']}</td>
+                <td>{$row['order_id']}</td>
+                <td>{$row['product_price']}</td>
+                <td>{$row['product_title']}<br>
+                <td>{$row['product_quantity']}<br>
+
+                </td>
+                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_report.php?id={$row['report_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+
+    DELIMETER;
+
+        echo $reports;
+    }
+}
