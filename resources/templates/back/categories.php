@@ -17,6 +17,12 @@
         </div>
 
         <div class="form-group">
+            <label for="category-title">Category Image</label>
+            <input type="file" name="file">
+
+        </div>
+
+        <div class="form-group">
 
             <input type="submit" class="btn btn-primary" value="Add Category" name="add_category">
         </div>
@@ -36,6 +42,7 @@
             <tr>
                 <th>id</th>
                 <th>Title</th>
+                <th>Image</th>
             </tr>
         </thead>
 

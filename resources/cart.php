@@ -188,7 +188,7 @@ function process_transaction()
         }
         session_destroy();
     } else {
-        redirect("index.php");
+        // redirect("index.php"); thank_you.php doesn't show tx amt cc details in url
     }
 }
 

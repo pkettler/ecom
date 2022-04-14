@@ -4,11 +4,11 @@
 
 <!-- Page Content -->
 <div class="container">
-
+    <?php include(TEMPLATE_FRONT . DS . "side_nav.php"); ?>
 
     <!-- /.row -->
 
-    <div class="row">
+    <div class="col-md-9">
         <h4 class="text-center bg-danger"><?php display_message(); ?></h4>
         <h1>Checkout</h1>
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
@@ -16,6 +16,7 @@
             <input type="hidden" name="business" value="sb-el72e8973427@business.example.com">
             <input type="hidden" name="currency_code" value="USD">
             <input type="hidden" name="upload" value="1">
+            <!-- <input type="hidden" name="at" value=""> -->
             <table class="table table-striped">
                 <thead>
                     <tr>

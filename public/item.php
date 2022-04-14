@@ -1,7 +1,7 @@
 <?php require_once("../resources/config.php"); ?>
 
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
-<!-- Page Content -->
+<!-- Page Content, Reviews and Ratings features commented out -->
 <div class="container">
 
     <!-- Side Navigation -->
@@ -37,7 +37,7 @@
                             <hr>
                             <h4 class=""><?php echo "&#36;" . $row['product_price']; ?></h4>
 
-                            <div class="ratings">
+                            <!-- <div class="ratings">
 
                                 <p>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -47,7 +47,7 @@
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                     4.0 stars
                                 </p>
-                            </div>
+                            </div> -->
                             <p><?php echo $row['product_short_desc']; ?></p>
 
                             <!-- Buy Now Button  -->
@@ -71,7 +71,7 @@
             <hr>
 
 
-            <!--Row for Tab Panel-->
+            <!--Row for Tab Panel, Reviews commented out-->
 
             <div class="row">
 
@@ -80,7 +80,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                        <!-- <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li> -->
 
                     </ul>
 
@@ -92,7 +92,10 @@
 
 
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
+
+                        <!-- Review Product section with form -->
+
+                        <!-- <div role="tabpanel" class="tab-pane" id="profile">
 
                             <div class="col-md-6">
 
@@ -182,7 +185,7 @@
 
                             </div>
 
-                        </div>
+                        </div> -->
 
                     </div>
 

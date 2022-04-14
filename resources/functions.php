@@ -84,6 +84,7 @@ function get_products()
     while ($row = fetch_array($query)) {
 
         $product_image = display_image($row['product_image']);
+        $product_short_desc = escape_string($row['product_short_desc']);
 
         $product = <<<DELIMETER
 
@@ -94,7 +95,7 @@ function get_products()
                     <h4 class="pull-right">&#36;{$row['product_price']}</h4>
                         <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
                         </h4>
-                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                        <p>{$row['product_short_desc']}</p>
                     <a class="btn btn-primary" href="../resources/cart.php?add={$row['product_id']}">Add To Cart</a>
                     </div>
                 </div>
@@ -113,13 +114,43 @@ function get_categories()
     confirm($query);
 
     while ($row = fetch_array($query)) {
+        $cat_image = display_image($row['cat_image']);
+
+
         $categories_links = <<<DELIMETER
 
+
         <a href='category.php?id={$row['cat_id']}' class='list-group-item'>{$row['cat_title']}</a>
+       
+    
+            
 
         DELIMETER;
 
         echo $categories_links;
+    }
+}
+
+//Get category title
+
+function get_category_title()
+{
+
+    $query = query("SELECT * FROM categories WHERE cat_id = " . escape_string($_GET['id']) . " ");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+        // $cat_image = display_image($row['cat_image']);
+
+
+        $category_title = <<<DELIMETER
+
+        <h1>{$row['cat_title']}</h1>
+       
+
+        DELIMETER;
+
+        echo $category_title;
     }
 }
 
@@ -445,18 +476,25 @@ function show_categories_in_admin()
 }
 
 
+
+
 function add_category()
 {
 
     if (isset($_POST['add_category'])) {
 
         $cat_title = escape_string($_POST['cat_title']);
+        $cat_image       = $_FILES['file']['name'];
+        $cat_img_temp_location = $_FILES['file']['tmp_name'];
+
+        move_uploaded_file($cat_img_temp_location, UPLOAD_DIRECTORY . DS . $cat_image);
 
         if (empty($cat_title) || $cat_title == " ") {
             echo "<p class='bg-danger'>Category cannot be empty</p>";
             // set_message("Category cannot be empty");
         } else {
-            $insert_cat = query("INSERT INTO categories(cat_title) VALUES('{$cat_title}') ");
+
+            $insert_cat = query("INSERT INTO categories(cat_title, cat_image) VALUES('{$cat_title}','{$cat_image}') ");
             confirm($insert_cat);
             set_message("Category Created");
         }

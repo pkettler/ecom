@@ -39,6 +39,10 @@ if (!isset($_SESSION['username'])) {
             include(TEMPLATE_BACK . "/categories.php");
         }
 
+        if (isset($_GET['add_category'])) {
+            include(TEMPLATE_BACK . "/categories.php");
+        }
+
         if (isset($_GET['edit_product'])) {
             include(TEMPLATE_BACK . "/edit_product.php");
         }
