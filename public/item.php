@@ -36,6 +36,8 @@
                             <h4><a href="#"><?php echo $row['product_title']; ?></a> </h4>
                             <hr>
                             <h4 class=""><?php echo "&#36;" . $row['product_price']; ?></h4>
+                            </p>
+                            <h4><?php echo $row['product_quantity']; ?> in stock</h4>
 
                             <!-- <div class="ratings">
 
@@ -48,9 +50,9 @@
                                     4.0 stars
                                 </p>
                             </div> -->
-                            <p><?php echo $row['product_short_desc']; ?></p>
+                            <p><?php echo $row['product_short_desc']; ?>
 
-                            <!-- Buy Now Button  -->
+                                <!-- Buy Now Button  -->
                             <form action="">
                                 <div class="form-group">
                                     <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" type="submit" class="btn btn-primary">Buy Now</a>

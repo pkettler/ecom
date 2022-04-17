@@ -41,17 +41,39 @@
                         <div class="form-group">
                             <textarea name="message" class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
                             <p class="help-block text-danger"></p>
+                            <button name="submit" type="submit" class="btn btn-xl">Send Message</button>
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col-lg-12 text-center">
-                        <div id="success"></div>
-                        <button name="submit" type="submit" class="btn btn-xl">Send Message</button>
-                    </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <div class="row">
+        <div class="contact-info">
+            <div class="col-lg-6">
+                <h2 class="section-heading"></h2>
+                <h3 class="section-subheading">
+                    Ironwood Furniture Co.
+                </h3>
+                <p>1290 Cleveland Road East</p>
+                <p>Sacramento CA</p>
+                <p>55123</p>
+                <p>(123)-555-4444</p>
+            </div>
+
+            <div class="col-lg-6">
+
+                <a href="returns.php">
+                    <h4 id="return-link">Our Return policy</h4>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>
 
 </div>

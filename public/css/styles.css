@@ -30,3 +30,25 @@
 a.list-group-item{
     color: #5B8273;
 }
+
+.container{
+    color: #5B8273;
+}
+
+
+/* About Page */
+
+.about_image{
+    width: 450px;
+    margin: 20px;
+}
+
+/* Contact Page */
+
+#return-link{
+    color: #8b5c4b;
+}
+
+.contact-info{
+    margin-top: 5%;
+}

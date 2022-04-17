@@ -241,7 +241,35 @@ function login_user()
 
         //Use this to show user's first name in the top admin nav by creating a first name column in database. change session to 'first_name' instead of 'email'
         while ($row = fetch_array($query)) {
-            $_SESSION['email'] = $row['email'];
+            $_SESSION['username'] = $row['username'];
+        }
+    }
+}
+
+
+function login_admin_user()
+{
+
+    if (isset($_POST['submit_admin'])) {
+        $admin_username = escape_string($_POST['admin_username']);
+        $admin_password = escape_string($_POST['admin_password']);
+        // $email = escape_string($_POST['email']);
+
+        $query = query("SELECT * FROM admins WHERE admin_username = '{$admin_username}' AND admin_password = '{$admin_password}'");
+        confirm($query);
+
+        if (mysqli_num_rows($query) == 0) {
+            set_message("Incorrect username or password");
+            redirect("admin_login.php");
+        } else {
+            $_SESSION['admin_username'] = $admin_username;
+            // set_message("Hello {$username}!");
+            redirect("admin/index.php");
+        }
+
+        //Use this to show user's first name in the top admin nav by creating a first name column in database. change session to 'first_name' instead of 'email'
+        while ($row = fetch_array($query)) {
+            $_SESSION['admin_username'] = $row['admin_username'];
         }
     }
 }
@@ -504,30 +532,28 @@ function add_category()
 
 /********************************admin users*******************************/
 
-function display_users()
+function display_admins()
 {
 
-    $category_query = query("SELECT * FROM users");
+    $category_query = query("SELECT * FROM admins");
     confirm($category_query);
 
     while ($row = fetch_array($category_query)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-        $email = $row['email'];
-        $password = $row['password'];
+        $admin_id = $row['admin_id'];
+        $admin_username = $row['admin_username'];
+        // $password = $row['password'];
 
-        $user = <<<DELIMETER
+        $admin = <<<DELIMETER
 
             <tr>
-                <td>{$user_id}</td>
-                <td>{$username}</td>
-                <td>{$email}</td>
-                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['user_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                <td>{$admin_id}</td>
+                <td>{$admin_username}</td>
+                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['admin_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>
 
         DELIMETER;
 
-        echo $user;
+        echo $admin;
     }
 }
 
@@ -536,18 +562,36 @@ function add_user()
 {
     if (isset($_POST['add_user'])) {
         $username = escape_string($_POST['username']);
-        $email    = escape_string($_POST['email']);
         $password = escape_string($_POST['password']);
-        $user_photo = $_FILES['file']['name'];
-        $photo_tmp = $_FILES['file']['tmp_name'];
+        $first_name = escape_string($_POST['first_name']);
+        $last_name = escape_string($_POST['last_name']);
+        $email    = escape_string($_POST['email']);
+        $phone    = escape_string($_POST['phone']);
+        $address    = escape_string($_POST['address']);
 
-        move_uploaded_file($photo_tmp, UPLOAD_DIRECTORY . DS . $user_photo);
+        // $user_photo = $_FILES['file']['name'];
+        // $photo_tmp = $_FILES['file']['tmp_name'];
 
-        $query = query("INSERT INTO users(username, email,password, user_photo ) VALUES('{$username}', '{$email}', '{$password}', '{$user_photo}')");
+        // move_uploaded_file($photo_tmp, UPLOAD_DIRECTORY . DS . $user_photo);
+
+        $query = query("INSERT INTO users(username, password, first_name, last_name, email, phone, address) VALUES('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$phone}', '{$address}')");
         // $last_id = last_id();
         confirm($query);
         set_message("User added");
         redirect("index.php?users");
+    }
+}
+
+function add_admin()
+{
+    if (isset($_POST['add_admin'])) {
+        $username = escape_string($_POST['admin_username']);
+        $password = escape_string($_POST['admin_password']);
+
+        $query = query("INSERT INTO admins(admin_username, admin_password) VALUES('{$username}', '{$password}')");
+        confirm($query);
+        set_message("Admin added");
+        redirect("index.php?admins");
     }
 }
 

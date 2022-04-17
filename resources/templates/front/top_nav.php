@@ -19,17 +19,42 @@
                 <a href="login.php">Login</a>
             </li>
             <li>
-                <a href="admin">Admin</a>
-            </li>
-            <li>
                 <a href="checkout.php">Checkout</a>
             </li>
             <li>
                 <a href="contact.php">Contact</a>
             </li>
+            <li>
+                <a href="about.php">About Us</a>
+            </li>
+            <li>
+                <a href="privacy.php">Privacy</a>
+            </li>
 
         </ul>
+        <?php
+        if (isset($_SESSION['username'])) {
+            $display_username = $_SESSION['username'];
+        } else {
+            $display_username = "Welcome!";
+        }
+        ?>
+
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $display_username; ?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                    <li class="divider"></li>
+                    <li>
+                        <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
+
+
     <!-- /.navbar-collapse -->
 </div>
 <!-- /.container -->

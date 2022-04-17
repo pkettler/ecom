@@ -27,36 +27,47 @@
 
 
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control">
-
-        </div>
-
-        <!-- 
-      <div class="form-group">
-          <label for="first name">First Name</label>
-      <input type="text" name="first_name" class="form-control"   >
-         
-     </div> -->
-        <!-- 
-      <div class="form-group">
-          <label for="last name">Last Name</label>
-      <input type="text" name="last_name" class="form-control"   >
-         
-     </div> -->
-
-
-        <div class="form-group">
             <label for="password">Password</label>
             <input type="password" name="password" class="form-control">
 
         </div>
 
+
         <div class="form-group">
+            <label for="first name">First Name</label>
+            <input type="text" name="first_name" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+            <label for="last name">Last Name</label>
+            <input type="text" name="last_name" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" class="form-control">
+
+        </div>
+
+        <!-- <div class="form-group">
             <label for="product-title">User Image</label>
             <input type="file" name="file">
 
-        </div>
+        </div> -->
 
         <div class="form-group">
 

@@ -8,14 +8,14 @@
 
 
             <h1 class="page-header">
-                Users
+                Administrators
 
             </h1>
             <p class="bg-success">
                 <?php echo display_message(); ?>
             </p>
 
-            <a href="index.php?add_user" class="btn btn-primary">Add User</a>
+            <a href="index.php?add_admin" class="btn btn-primary">Add Admin</a>
 
 
             <div class="col-md-12">
@@ -25,11 +25,10 @@
                         <tr>
                             <th>Id</th>
                             <th>Username</th>
-                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php display_users(); ?>
+                        <?php display_admins(); ?>
 
                     </tbody>
                 </table>

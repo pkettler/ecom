@@ -4,9 +4,9 @@
 
 <?php
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['admin_username'])) {
 
-    redirect("../../public");
+    redirect("../../public/admin_login.php");
 }
 
 ?>
@@ -47,12 +47,12 @@ if (!isset($_SESSION['username'])) {
             include(TEMPLATE_BACK . "/edit_product.php");
         }
 
-        if (isset($_GET['users'])) {
-            include(TEMPLATE_BACK . "/users.php");
+        if (isset($_GET['admins'])) {
+            include(TEMPLATE_BACK . "/admins.php");
         }
 
-        if (isset($_GET['add_user'])) {
-            include(TEMPLATE_BACK . "/add_user.php");
+        if (isset($_GET['add_admin'])) {
+            include(TEMPLATE_BACK . "/add_admin.php");
         }
 
         if (isset($_GET['edit_user'])) {
