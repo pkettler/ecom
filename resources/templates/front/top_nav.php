@@ -32,26 +32,49 @@
             </li>
 
         </ul>
+
         <?php
-        if (isset($_SESSION['username'])) {
-            $display_username = $_SESSION['username'];
-        } else {
-            $display_username = "Welcome!";
+
+        function show_username()
+        {
+            //WHERE user_id = " . escape_string($_GET['id']) . " "
+            $query = query(" SELECT * FROM users");
+            confirm($query);
+
+            while ($row = fetch_array($query)) {
+                if (isset($_SESSION['username']) && $_SESSION['username'] == $row['username']) {
+                    $display_first_name = $row['first_name'];
+
+
+                    $display_icon = <<<DELIMETER
+
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome $display_first_name! <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li class="divider"></li>
+                        <li>
+                            <a href="../public/user_account.php"><i class="fa fa-fw fa-power-off"></i>Account Details</a>
+                        </li>
+                        <li>
+                            <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            DELIMETER;
+                } else {
+                    $display_icon = "";
+                }
+                echo $display_icon;
+            }
         }
+
         ?>
 
-        <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $display_username; ?> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li class="divider"></li>
-                    <li>
-                        <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <?php show_username();  ?>
     </div>
 
 

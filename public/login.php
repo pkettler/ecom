@@ -8,6 +8,7 @@
     <header>
         <h1 class="text-center">Login</h1>
         <h2 class="text-center bg-warning"><?php display_message(); ?></h2>
+        <h2 class="text-center bg-success"><?php display_message(); ?></h2>
         <div class="col-sm-4 col-sm-offset-5">
             <form class="" action="" method="post" enctype="multipart/form-data">
 
@@ -24,7 +25,12 @@
                     <input type="submit" name="submit" class="btn btn-primary">
                 </div>
             </form>
+            <div>
+                <a href="sign_up.php">New user? Sign up here!</a>
+            </div>
         </div>
+
+
         <div>
             <a href="admin_login.php">Admin</a>
         </div>

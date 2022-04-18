@@ -1,6 +1,9 @@
 <?php
 
 //Global variable. Change this variable in display_image() if you change location of images directory. Will adjust path for all products across site.
+
+use LDAP\Result;
+
 $upload_directory = "uploads";
 
 // helper functions
@@ -223,6 +226,7 @@ function login_user()
 {
 
     if (isset($_POST['submit'])) {
+        $user_id = escape_string($_POST['user_id']);
         $username = escape_string($_POST['username']);
         $password = escape_string($_POST['password']);
         // $email = escape_string($_POST['email']);
@@ -235,13 +239,15 @@ function login_user()
             redirect("login.php");
         } else {
             $_SESSION['username'] = $username;
+            $_SESSION['login_id'] = $user_id;
             // set_message("Hello {$username}!");
-            redirect("admin/index.php");
+            redirect("index.php");
         }
 
         //Use this to show user's first name in the top admin nav by creating a first name column in database. change session to 'first_name' instead of 'email'
         while ($row = fetch_array($query)) {
             $_SESSION['username'] = $row['username'];
+            $_SESSION['login_id'] = $row['user_id'];
         }
     }
 }
@@ -301,6 +307,83 @@ function send_message()
     }
 }
 
+
+// User Account Page 
+// $_SESSION['login_id'] = $id;
+
+function show_user_details()
+{
+    if (isset($_SESSION['login_id'])) {
+
+
+
+        $id = ((int)$_SESSION['login_id']);
+
+        $query = query("SELECT * FROM users WHERE user_id = $id ");
+        confirm($query);
+
+
+
+        while ($row = fetch_array($query)) {
+
+            $username = escape_string($row['username']);
+            // $password = escape_string($row['password']);
+            $first_name = escape_string($row['first_name']);
+            $last_name = escape_string($row['last_name']);
+            $email    = escape_string($row['email']);
+            $phone    = escape_string($row['phone']);
+            $address    = escape_string($row['address']);
+
+            $user_details = <<<DELIMETER
+
+        <input type="hidden" value="{$row['user_id']}">
+  
+            <p>Username: $username</p>
+            
+            <p>First: $first_name</p>
+            <p>Last: $last_name</p>
+            <p>Email: $email</p>
+            <p>Phone: $phone</p>
+            <p>Address: $address</p>
+            <a href="user_account_update.php"><p>Change Password / Update Account Details</p></a>
+
+        DELIMETER;
+
+            echo $user_details;
+        }
+    }
+}
+
+//User Account Update Page
+function update_user()
+{
+    if (isset($_POST['update_user'])) {
+
+        $username    = escape_string($_POST['username']);
+        $password    = escape_string($_POST['password']);
+        $first_name  = escape_string($_POST['first_name']);
+        $last_name   = escape_string($_POST['last_name']);
+        $email       = escape_string($_POST['email']);
+        $phone       = escape_string($_POST['phone']);
+        $address     = escape_string($_POST['address']);
+
+        $query  = "UPDATE users SET ";
+        $query .= "username          = '{$username}'    , ";
+        $query .= "password          = '{$password}'    , ";
+        $query .= "first_name        = '{$first_name}'  , ";
+        $query .= "last_name         = '{$last_name}'   , ";
+        $query .= "email             = '{$email}'       , ";
+        $query .= "phone             = '{$phone}'       , ";
+        $query .= "address           = '{$address}'       ";
+        $query .= "WHERE user_id=" . escape_string($_SESSION['login_id']);
+
+
+        $send_update_query = query($query);
+        confirm($send_update_query);
+        set_message("Account updated");
+        redirect("user_account.php");
+    }
+}
 
 
 /*****************************************BACK END FUNCTIONS********************************* */
@@ -574,11 +657,17 @@ function add_user()
 
         // move_uploaded_file($photo_tmp, UPLOAD_DIRECTORY . DS . $user_photo);
 
-        $query = query("INSERT INTO users(username, password, first_name, last_name, email, phone, address) VALUES('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$phone}', '{$address}')");
-        // $last_id = last_id();
-        confirm($query);
-        set_message("User added");
-        redirect("index.php?users");
+        if (empty($username || $password || $first_name || $last_name || $email || $phone || $address) == " ") {
+            echo "<p class='bg-danger text-center'>Input cannot be empty</p>";
+            // set_message("Category cannot be empty");
+        } else {
+
+            $query = query("INSERT INTO users(username, password, first_name, last_name, email, phone, address) VALUES('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$phone}', '{$address}')");
+            // $last_id = last_id();
+            confirm($query);
+            set_message("Account created! Login to access account");
+            redirect("login.php");
+        }
     }
 }
 
