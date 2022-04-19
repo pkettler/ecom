@@ -336,16 +336,18 @@ function show_user_details()
 
             $user_details = <<<DELIMETER
 
-        <input type="hidden" value="{$row['user_id']}">
-  
-            <p>Username: $username</p>
-            
-            <p>First: $first_name</p>
-            <p>Last: $last_name</p>
-            <p>Email: $email</p>
-            <p>Phone: $phone</p>
-            <p>Address: $address</p>
-            <a href="user_account_update.php"><p>Change Password / Update Account Details</p></a>
+            <input type="hidden" value="{$row['user_id']}">
+
+            <div class="font-weight-bold">
+                <p>Username: $username</p>
+                <p>First: $first_name</p>
+                <p>Last: $last_name</p>
+                <p>Email: $email</p>
+                <p>Phone: $phone</p>
+                <p>Address: $address</p><br>
+                <a href="user_account_update.php"><p>Change Password / Update Account Details</p></a><br>
+                <a href="user_orders.php"><p>Order History</p></a>
+            </div>
 
         DELIMETER;
 
@@ -382,6 +384,34 @@ function update_user()
         confirm($send_update_query);
         set_message("Account updated");
         redirect("user_account.php");
+    }
+}
+
+//View  previous orders on user_orders page
+function get_user_reports()
+{
+
+    $query = query(" SELECT * FROM reports WHERE user_id = " . escape_string($_SESSION['login_id']));
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+
+        $reports = <<<DELIMETER
+            
+            <tr>
+                <td>{$row['date']}<br>
+                <td>{$row['product_title']}<br>
+                <td>{$row['product_quantity']}<br>
+                <td>&#36;{$row['product_price']}</td>
+
+                </td>
+
+            </tr>
+            
+
+    DELIMETER;
+
+        echo $reports;
     }
 }
 

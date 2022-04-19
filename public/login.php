@@ -27,13 +27,15 @@
             </form>
             <div>
                 <a href="sign_up.php">New user? Sign up here!</a>
+            </div><br>
+
+            <div>
+                <a href="admin_login.php">Admin</a>
             </div>
         </div>
 
 
-        <div>
-            <a href="admin_login.php">Admin</a>
-        </div>
+
 
 
     </header>

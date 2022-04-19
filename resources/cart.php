@@ -112,6 +112,8 @@ function cart()
 
                 $_SESSION['item_total'] = $total += $sub;
                 $_SESSION['item_quantity'] = $item_quantity;
+                $_SESSION['item_name'] = $item_name;
+                $_SESSION['checkout'] = "true";
             }
         }
     }
@@ -133,15 +135,20 @@ function show_paypal()
 
 function process_transaction()
 {
+    // if (isset($_GET['tx'])) {
 
+    // if (isset($_POST['upload'])) {
 
-    if (isset($_GET['tx'])) {
+    if (isset($_SESSION['checkout'])) {
 
         //Data we get from Paypal confirmation
-        $amount = $_GET['amt'];
-        $currency = $_GET['cc'];
-        $transaction = $_GET['tx'];
-        $status = $_GET['st'];
+        // $amount = $_GET['amt'];
+        // $currency = $_GET['cc'];
+        // $transaction = $_GET['tx'];
+        // $status = $_GET['st'];
+
+        //session login_id as user_id
+        $user_id = $_SESSION['login_id'];
 
 
         $total = 0;
@@ -158,12 +165,12 @@ function process_transaction()
                     $id = substr($name, 8, $length);
 
                     //inserts confirmation info from Paypal into orders table
-                    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_currency, order_status ) VALUES('{$amount}', '{$transaction}', '{$currency}', '{$status}')");
+                    // $send_order = query("INSERT INTO orders (user_id, order_amount, order_transaction, order_currency, order_status ) VALUES('{$user_id}','{$amount}', '{$transaction}', '{$currency}', '{$status}')");
 
                     //Gives us last inserted id
                     $last_id = last_id();
 
-                    confirm($send_order);
+                    // confirm($send_order);
 
 
                     $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
@@ -177,7 +184,10 @@ function process_transaction()
                         $product_price = $row['product_price'];
                         $product_title = $row['product_title'];
 
-                        $insert_report = query("INSERT INTO reports (product_id, order_id, product_title, product_price, product_quantity) VALUES('{$id}', '{$last_id}', '{$product_title}','{$product_price}', '{$value}')");
+                        $currentDate = new DateTime();
+                        $date = $currentDate->format("m/d/Y");
+
+                        $insert_report = query("INSERT INTO reports (product_id, user_id, product_title, product_price, product_quantity, date) VALUES('{$id}', '{$user_id}', '{$product_title}','{$product_price}', '{$value}', '{$date}')");
                         confirm($insert_report);
                     }
 
@@ -186,7 +196,14 @@ function process_transaction()
                 }
             }
         }
-        session_destroy();
+
+
+        $tmp = $_SESSION['login_id'];
+        $tmp2 = $_SESSION['username'];
+        session_unset();
+        $_SESSION['login_id'] = $tmp;
+        $_SESSION['username'] = $tmp2;
+        // redirect("index.php");
     } else {
         // redirect("index.php"); thank_you.php doesn't show tx amt cc details in url
     }

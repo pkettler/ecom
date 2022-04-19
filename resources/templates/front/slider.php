@@ -14,6 +14,9 @@
         <div class="item">
             <img class="slide-image" src="http://via.placeholder.com/800x300" alt="">
         </div>
+        <!-- <div class="item">
+            <img class="slide-image" width="800" height="300" src="https://secure.img1-fg.wfcdn.com/im/38917885/scale-h253-w253%5Ecompr-r85/1912/191237580/default_name.jpg" alt="">
+        </div> -->
     </div>
     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>

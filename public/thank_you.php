@@ -12,9 +12,14 @@ process_transaction();
 
 
 <!-- Page Content -->
-<div class="container">
+<div class="container text-center">
 
-    <h1 class="text-center">THANK YOU</h1>
+    <h1 class="text-center">THANK YOU!</h1>
+    <h2 class="text-center">Your order is being processed</h2>
+    <br>
+    <button>
+        <a href="index.php">Continue Shopping</a>
+    </button>
 
 </div>
 <!-- /.container -->

@@ -21,6 +21,21 @@
 }
 
 
+/* Top welcome nav */
+
+.display_icon{
+    color: #5B8273;
+}
+
+
+/*slider images */
+
+.slide-image{
+    max-width: 50%;
+    height: auto;
+}
+
+
 /* Category side menu */
 
 .lead{

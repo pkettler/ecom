@@ -6,12 +6,19 @@
 <div class="container">
     <?php include(TEMPLATE_FRONT . DS . "side_nav.php"); ?>
 
+
+    <?php
+
+    process_transaction();
+
+
+    ?>
+
     <!-- /.row -->
 
     <div class="col-md-9">
         <h4 class="text-center bg-danger"><?php display_message(); ?></h4>
         <h1>Checkout</h1>
-        <!-- action="order_details.php" -->
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_cart">
             <input type="hidden" name="business" value="sb-el72e8973427@business.example.com">
@@ -29,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php cart(); ?>
+
                 </tbody>
             </table>
             <?php echo show_paypal(); ?>
@@ -60,6 +67,8 @@
 
 
                 </tbody>
+
+                <?php echo show_paypal(); ?>
 
             </table>
 
