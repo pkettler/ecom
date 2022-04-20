@@ -67,3 +67,13 @@ a.list-group-item{
 .contact-info{
     margin-top: 5%;
 }
+
+/* Account details page */
+
+#user_details{
+    font-size: 2em;
+}
+
+#order_history{
+    font-size: 2em;
+}

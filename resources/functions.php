@@ -337,7 +337,7 @@ function show_user_details()
             $user_details = <<<DELIMETER
 
             <input type="hidden" value="{$row['user_id']}">
-
+           
             <div class="font-weight-bold">
                 <p>Username: $username</p>
                 <p>First: $first_name</p>
@@ -348,6 +348,7 @@ function show_user_details()
                 <a href="user_account_update.php"><p>Change Password / Update Account Details</p></a><br>
                 <a href="user_orders.php"><p>Order History</p></a>
             </div>
+            
 
         DELIMETER;
 

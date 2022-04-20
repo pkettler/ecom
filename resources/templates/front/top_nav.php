@@ -47,22 +47,24 @@
 
 
                     $display_icon = <<<DELIMETER
-                    <div class="display_icon">
-                        <ul class="nav navbar-right top-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome $display_first_name! <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                    <div class="container">
+                        <div class="display_icon">
+                            <ul class="nav navbar-right top-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome $display_first_name! <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
 
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="../public/user_account.php"><i class="fa fa-fw fa-power-off"></i>Account Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="../public/user_account.php"><i class="fa fa-fw fa-power-off"></i>Account Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     DELIMETER;
