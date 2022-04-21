@@ -286,7 +286,7 @@ function send_message()
 {
 
     if (isset($_POST['submit'])) {
-        $to         = "someEmailAddress@gmail.com";
+        $to         = "kettler51458@gotoltc.edu";
         $from_name  = $_POST['name'];
         $subject    = $_POST['subject'];
         $email      = $_POST['email'];
@@ -299,7 +299,7 @@ function send_message()
 
         if (!$result) {
             set_message("An error ocurred while sending this message. ");
-            // redirect("contact.php"); uncomment when mail function is working.
+            redirect("contact.php");
         } else {
             set_message("Your message has been sent!");
             redirect("contact.php");
@@ -736,11 +736,10 @@ function get_reports()
             <tr>
                 <td>{$row['report_id']}</td>
                 <td>{$row['product_id']}</td>
-                <td>{$row['order_id']}</td>
                 <td>{$row['product_price']}</td>
                 <td>{$row['product_title']}<br>
                 <td>{$row['product_quantity']}<br>
-
+                <td>{$row['date']}<br>
                 </td>
                 <td><a class="btn btn-danger" href="../../resources/templates/back/delete_report.php?id={$row['report_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>

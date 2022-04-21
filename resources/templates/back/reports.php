@@ -14,10 +14,10 @@
             <tr>
                 <th>Id</th>
                 <th>Product Id</th>
-                <th>Order Id</th>
                 <th>Product Price</th>
                 <th>Product Title</th>
                 <th>Product Quantity</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
