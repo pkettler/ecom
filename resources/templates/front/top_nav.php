@@ -81,6 +81,52 @@
         ?>
 
         <?php show_username();  ?>
+
+        <?php
+
+        function show_admin_username()
+        {
+            //WHERE user_id = " . escape_string($_GET['id']) . " "
+            $query = query(" SELECT * FROM admins");
+            confirm($query);
+
+            while ($row = fetch_array($query)) {
+                if (isset($_SESSION['admin_username']) && $_SESSION['admin_username'] == $row['admin_username']) {
+                    $display_first_name = $row['admin_username'];
+
+
+                    $display_icon = <<<DELIMETER
+                    <div class="container">
+                        <div class="display_icon">
+                            <ul class="nav navbar-right top-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome $display_first_name! <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="../public/admin/index.php"><i class="fa fa-fw fa-power-off"></i>Admin Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="../public/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    DELIMETER;
+                } else {
+                    $display_icon = "";
+                }
+                echo $display_icon;
+            }
+        }
+
+        ?>
+
+        <?php show_admin_username();  ?>
     </div>
 
 

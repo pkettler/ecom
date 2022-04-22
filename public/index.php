@@ -26,26 +26,26 @@
 
             </div> -->
 
-            <!-- Hardcoded categories with pictures below. use add_category and create an update_category function to dynamically add and update categories in admin section in future versions -->
+            <!-- Hardcoded categories with pictures below. Use add_category and create an update_category function to dynamically add and update categories in admin section in future versions -->
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <a href="category.php?id=3"> <img src="../resources/uploads/Gina+Canopy+Bed.webp" alt=""> </a>
+                        <a href="category.php?id=3"> <img src="../resources/uploads/Gina+Canopy+Bed.webp" alt="Queen size bed with canopy frame and wooden headboard."> </a>
                         <h3>Bedroom</h3>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <a href="category.php?id=17"> <img src="../resources/uploads/biege room view.jpg" alt=""> </a>
+                        <a href="category.php?id=17"> <img src="../resources/uploads/biege room view.jpg" alt="plush vinyl recliner in a reclined position"> </a>
                         <h3>Living Room</h3>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <a href="category.php?id=18"> <img src="../resources/uploads/5-piece-table.jpg" alt=""> </a>
+                        <a href="category.php?id=18"> <img src="../resources/uploads/5-piece-table.jpg" alt="Sunlit room with four chairs and a wooden table."> </a>
                         <h3>Kitchen</h3>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <a href="category.php?id=19"> <img src="../resources/uploads/white room view.jpg" alt=""> </a>
+                        <a href="category.php?id=19"> <img src="../resources/uploads/white room view.jpg" alt="Sunlit white room. There's an L-shaped desk with a laptop open on it with books next to it."> </a>
                         <h3>Office</h3>
                     </div>
                 </div>

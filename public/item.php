@@ -50,9 +50,8 @@
                                     4.0 stars
                                 </p>
                             </div> -->
-                            <p><?php echo $row['product_short_desc']; ?>
 
-                                <!-- Buy Now Button  -->
+                            <!-- Buy Now Button  -->
                             <form action="">
                                 <div class="form-group">
                                     <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" type="submit" class="btn btn-primary">Buy Now</a>
