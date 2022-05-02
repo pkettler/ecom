@@ -661,7 +661,7 @@ function display_admins()
             <tr>
                 <td>{$admin_id}</td>
                 <td>{$admin_username}</td>
-                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['admin_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_admin.php?id={$row['admin_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>
 
         DELIMETER;

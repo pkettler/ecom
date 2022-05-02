@@ -25,7 +25,8 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Latest Product</h3>
+                <h3>Our Handcrafted furniture is build from the most durable solid wood or ironwoods speciality synthetic blend wood.</h3>
+                <h4>We strive to insure our customers always get the best product at an affordable price.</h4>
             </div>
         </div>
         <!-- /.row -->

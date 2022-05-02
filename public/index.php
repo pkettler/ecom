@@ -14,8 +14,18 @@
 
             <div class="row carousel-holder">
 
+
                 <div class="col-md-12">
                     <?php include(TEMPLATE_FRONT . DS . "slider.php"); ?>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h2><a href="contact.php">Contact us now</a> to learn how to get up to 30% off your order when you apply our military discount.</h2>
                 </div>
 
             </div>
@@ -45,7 +55,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <a href="category.php?id=18"> <img src="../resources/uploads/5-piece-table.jpg" alt="Sunlit room with four chairs and a wooden table."> </a>
+                        <a href="category.php?id=18"> <img src="../resources/uploads/kitchen-category.jpg" alt="Sunlit room with four chairs and a wooden table."> </a>
                         <h3>Kitchen</h3>
                     </div>
                 </div>
